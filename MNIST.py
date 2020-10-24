@@ -2,7 +2,6 @@ from keras.models import Sequential
 from keras.layers import Conv2D,MaxPooling2D,Flatten,Dense
 from keras.datasets import mnist
 from keras.utils import np_utils as np
-import tensorflowjs as tfjs
 import numpy
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -32,6 +31,4 @@ cnn_model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["a
 cnn_model.fit(x_train, y_train, validation_data=(x_test, y_test), batch_size=200, epochs=10)
 
 scores = cnn_model.evaluate(x_test, y_test, verbose=0)
-print("Error: {:.2f}%".format((1-scores[1])*100))
-
-tfjs.converters.save_keras_model(cnn_model, "model")
+print("Error: {:.2f}%".format((1-scores[1])*100)) 
